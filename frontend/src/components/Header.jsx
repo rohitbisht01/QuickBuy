@@ -1,18 +1,12 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar, Badge } from "react-bootstrap";
 import { FaCartArrowDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
-
-const IconComponent = ({ Icon, label }) => {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-      <Icon />
-      {label}
-    </div>
-  );
-};
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { cartItems } = useSelector((state) => state.cart);
+
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
@@ -25,12 +19,27 @@ const Header = () => {
             <Nav className="ms-auto">
               <LinkContainer to={"/cart"}>
                 <Nav.Link>
-                  <IconComponent Icon={FaCartArrowDown} label={"Cart"} />
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <FaCartArrowDown />
+                    {"Cart"}
+                    {cartItems.length > 0 && (
+                      <Badge pill bg="success" style={{ marginLeft: "5px" }}>
+                        {cartItems.reduce((acc, curr) => acc + curr.qty, 0)}
+                      </Badge>
+                    )}
+                  </div>
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to={"/login"}>
                 <Nav.Link>
-                  <IconComponent Icon={FaUser} label={"Sign In"} />
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 4 }}
+                  >
+                    <FaUser />
+                    {"Sign In"}
+                  </div>
                 </Nav.Link>
               </LinkContainer>
             </Nav>

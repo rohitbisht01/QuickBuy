@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const productRouter = require("./routes/productRoutes");
+const userRouter = require("./routes/userRoutes");
+const cookieParser = require("cookie-parser");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 dotenv.config();
 
@@ -13,8 +15,17 @@ connectDB();
 
 app.use(cors());
 
-app.use("/api/products", productRouter);
+// body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// cookie parser middleware
+app.use(cookieParser());
+
+app.use("/api/products", productRouter);
+app.use("/api/users", userRouter);
+
+// error handler middleware
 app.use(notFound);
 app.use(errorHandler);
 

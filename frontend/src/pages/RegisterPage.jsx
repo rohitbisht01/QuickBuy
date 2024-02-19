@@ -96,7 +96,7 @@ const RegisterPage = () => {
         <Button
           type="submit"
           variant="primary"
-          className="mt-2"
+          className="my-2"
           disabled={isLoading}
         >
           Register

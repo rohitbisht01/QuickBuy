@@ -80,6 +80,7 @@ const LoginPage = () => {
         <Col>
           New Customer?
           <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+            {" "}
             Register
           </Link>
         </Col>

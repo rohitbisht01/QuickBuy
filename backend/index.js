@@ -4,6 +4,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const productRouter = require("./routes/productRoutes");
 const userRouter = require("./routes/userRoutes");
+const orderRouter = require("./routes/orderRoutes");
 const cookieParser = require("cookie-parser");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
 
 // error handler middleware
 app.use(notFound);

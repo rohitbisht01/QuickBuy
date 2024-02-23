@@ -16,3 +16,4 @@ QuickBuy is an e-commerce platform built with React, Redux Toolkit Query, Node.j
 
 1. **Client**: React, RTK Query
 2. **Server**: Node, Express, MongoDB
+3. **Stripe Payment**
